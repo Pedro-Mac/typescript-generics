@@ -21,3 +21,28 @@ console.log(newMergedObj.names)
 //We can pass which specific types we want when calling the function
 const newObj = merge<{name: string}, {handsome: boolean}>({name: 'Pedro'}, {handsome: true})
 console.log(newObj);
+
+// ---------- //
+interface Lengthy {
+  length: number
+}
+
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] { // here we make in a way that we only accept arguments which have a length property
+  let descriptionText = 'Got no value.';
+  if(element.length > 0) {
+    descriptionText = `Got ${element.length} elements.`
+  }
+  return [element, descriptionText]
+}
+
+console.log(countAndDescribe('Hi there'));
+console.log(countAndDescribe([]));
+
+// ---------------------------- //
+
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+  return obj[key];
+}
+
+extractAndConvert({name: 'Pedro'}, name); 
+// extractAndConvert({name: 'Pedro'}, age); this would not work 
