@@ -74,3 +74,18 @@ numberStorage.addItem(1);
 numberStorage.addItem(10);
 numberStorage.addItem(Number('100'));
 console.log(numberStorage.getItems)
+
+// --- Gen utility types --- //
+interface CourseGoal {
+  title: string,
+  description: string,
+  completeUntil: Date
+}
+
+function createCourseGoal(title: string, description: string, data: Date): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = data;
+  return courseGoal as CourseGoal;
+}
