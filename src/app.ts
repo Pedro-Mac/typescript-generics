@@ -10,7 +10,7 @@ const names: Array<string> = []; // same as 'string[]'
 //  }, 2000)
 // })
 
-function merge<T, U>(objA: T, objB: U) { // this tells typescript that it can expect 2 objects with different types as values, but leaves us with flexibility
+function merge<T extends object, U extends object>(objA: T, objB: U) { //Constraints - now the function will accetp only objects, but their structure is flexible
   return Object.assign(objA, objB);
 }
 
